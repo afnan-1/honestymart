@@ -1,0 +1,22 @@
+.footer__row{
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+.footer__title{
+    color: white;
+    max-width: 25%;
+}
+.footer{
+    background: rgb(47, 49, 68);
+}
+.footerlink__social{
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding-bottom: 10px;
+}
+.horizontal__line{
+    color: white;
+    background-color: white;
+}

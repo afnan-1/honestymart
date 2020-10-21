@@ -1,0 +1,22 @@
+
+.amazonslider{
+    width: 100%;
+    /* z-index: 1; */
+    /* object-fit: cover; */
+    margin-bottom: -400px;
+    mask-image: linear-gradient(to bottom, rgb(0, 0, 0,1)50%, rgb(0, 0, 0,0));
+}
+.carousel-control-prev , .carousel-control-next{
+    margin-bottom: 350px;
+}
+.h{
+height: 650px;
+width: auto;
+object-fit: cover;
+
+}
+  @media only screen and (max-width: 500px) {
+    .h{
+        height: 500px;
+    }
+   }

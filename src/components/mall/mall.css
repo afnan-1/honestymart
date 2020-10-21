@@ -1,0 +1,14 @@
+
+.mall{
+    display: flex;
+    z-index: 1;
+    justify-content: center;
+}
+.mallcard{
+    z-index: 1;
+    /* width: 20% !important; */
+}
+.card{
+    border:none !important;
+    background-color: transparent !important;
+}
