@@ -9,14 +9,24 @@
 .carousel-control-prev , .carousel-control-next{
     margin-bottom: 350px;
 }
-.h{
-height: 650px;
-width: auto;
+.slider__img{
+    width: 100%;
+    height: 650px;
+/* width: 100px; */
 object-fit: cover;
-
 }
-  @media only screen and (max-width: 500px) {
-    .h{
-        height: 500px;
+
+
+  @media only screen and (max-width: 600px) {
+    .slider__img{
+        height: 300px;
+        object-fit: cover;
+        width:100%;
+    }
+    .carousel-control-prev , .carousel-control-next{
+        display: none !important;
+    }
+    .amazonslider{
+        margin-bottom: -150px;
     }
    }

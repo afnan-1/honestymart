@@ -1,6 +1,14 @@
 .App{
 background-color:whitesmoke;
+/* min-width: 1000px; */
 }
 .HomeCard__main{
     display: flex;
+}
+a{
+    text-decoration:none;
+    text-underline-offset: unset;
+}
+a:hover{
+    text-decoration: none !important;
 }

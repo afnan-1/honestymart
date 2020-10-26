@@ -9,31 +9,31 @@ function Footer() {
         <div className="footer mt-4">
             <div className="footer__row">
 
-            
-            <div className="footer__title mt-4">
-                Customer Services
-            </div>
-            <div className="footer__title mt-4">
-                About Us
-            </div>
-            <div className="footer__title mt-4">
-                Buy on Honesty.pk
-            </div>
-            <div className="footer__title mt-4">
-                Sell on Honesty.pk
-            </div>
+
+                <div className="footer__title mt-4">
+                    <span> Customer Services</span>
+                </div>
+                <div className="footer__title mt-4">
+                    <span>About Us</span>
+                </div>
+                <div className="footer__title mt-4">
+                    <span> Buy on Honesty.pk</span>
+                </div>
+                <div className="footer__title mt-4">
+                    <span>Sell on Honesty.pk</span>
+                </div>
             </div>
             <div className="container">
-            <hr className="horizontal__line"/>
-            
-            
-            <div className="footerlink__social">
-                <span>Follow Us:</span>
-                <FacebookIcon />
-                <TwitterIcon />
-                <YouTubeIcon />
-                <InstagramIcon />
-            </div>
+                <hr className="horizontal__line" />
+
+
+                <div className="footerlink__social">
+                    <span>Follow Us:</span>
+                    <FacebookIcon />
+                    <TwitterIcon />
+                    <YouTubeIcon />
+                    <InstagramIcon />
+                </div>
             </div>
         </div>
     )
