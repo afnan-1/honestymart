@@ -51,6 +51,9 @@
     margin-left: 10px;
     margin-right: 10px;
 }
+.search__mobile{
+    display: none !important;
+}
 @media only screen and (max-width: 850px) {
     .header__logo{
         min-width: 70px;
@@ -62,14 +65,22 @@
        display: none !important;
 
    }
+   .search__mobile{
+       display: flex !important;
+       position: fixed;
+       margin-left: 5px;
+   }
    .header__logo{
        margin-left: 0;
        display: none;
    }
    .header__searchInput{
        padding: 28px;
+       padding-left: 35px;
        width: 100%;
        background-color: white;
+       box-shadow: 2px 2px 2px rgb(158, 158, 158);
+       /* border: 1px; */
    }
    .header__searchIcon{
        display: none !important;

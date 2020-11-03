@@ -12,10 +12,16 @@
     margin-right:10px;
 
   }
+  .HomeCard__main{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+}
   .media{
     height: 300px;
     object-fit:cover;
   }
+
   @media only screen and (max-width: 600px) {
 .root{
     height: 200px;

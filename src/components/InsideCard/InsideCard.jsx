@@ -8,7 +8,7 @@ function InsideCard() {
     return (
         <div className="insidecard">
             <div className="insidecard__heading mx-3">
-                <h2>Electronics</h2>
+                <h2>Honesty Mall</h2>
                 <p>Shop home entertaintment, TVs, home audio, headphones, cameras</p>
                 <hr className="mt-4"/>
                 <h3 style={{textAlign:'center'}}>SHOP BY CATEGORY</h3>
