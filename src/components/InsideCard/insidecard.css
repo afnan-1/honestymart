@@ -4,7 +4,11 @@
     /* height: 100vh; */
 }
 .crdimg{
-width: 100%;
+/* width: 300px; */
+width: 280px;
+height: 280px;
+object-fit: fill;
+/* width: 250px; */
 }
 .card__inside{
     display: flex;
@@ -13,18 +17,12 @@ width: 100%;
     justify-content: space-evenly;
     text-align: center;
     align-items: center;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 .newprice{
     font-size: larger;
 }
-.card__img{
-    /* width: 200px;
-     */
-     width: 90%;
-     /* min-width: 200px; */
-     /* min-width: 200px; */
-}
+
 .insidecard__flex{
     display: flex;
     justify-content: center;
@@ -38,15 +36,38 @@ width: 100%;
     font-size: 0.9em;
     font-weight: 500;
 }
+.crd__title2{
+    /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+    font-weight: 700;
+}
+@media only screen and (max-width: 1200px) {
+    .crdimg{
+        width: 220px;
+        height: 220px;
+    }
+}
+
+
 @media only screen and (max-width: 600px) {
-/* .card__img{
-    height: 10px !important;
-} */
+.crdimg{
+    width: 70px;
+    height: 70px;
+}
 .insidecard__heading{
     margin-top: 70px;
 }
 .cardinside__title{
-    font-size: 0.6em;
+    font-size: 0.45em;
 }
-
+.crd__title2{
+    font-size: 0.65em !important;
+    margin-top: -5px;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+}
+.newprice{
+    font-size: 0.65em;
+}
+.crd__price_old{
+font-size: 0.55em;
+}
 }

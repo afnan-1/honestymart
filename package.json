@@ -1,5 +1,6 @@
 {
   "name": "crstore",
+  "homepage":"https://honesty.pk",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

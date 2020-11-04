@@ -67,7 +67,7 @@
    }
    .search__mobile{
        display: flex !important;
-       position: fixed;
+       position: absolute;
        margin-left: 5px;
    }
    .header__logo{

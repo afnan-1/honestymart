@@ -1,16 +1,21 @@
-import Img1 from '../../assests/im1.jpeg';
+
 import React from 'react'
 import './insidecard.css'
+import { Link } from 'react-router-dom';
+// let history = useHistory()
 function Card(props) {
+
+
     return (
-        <div className="card__inside">
-            
-                <img src={Img1} alt="Avatar" className="crdimg" />
+        <Link to={`productsdetails/${props.id}`}>
+            <div className="card__inside">
+                <img src={props.imageurl} alt="Avatar" className="crdimg" />
                 <h3 className="cardinside__title text-muted">Best Selling items</h3>
-                <span className="" style={{fontFamily:'Arial Black'}}>ACCESSORIES & SUPPLIES</span>
-                <span className="font-weight-bold newprice">Rs.1200</span>
-                <del className="font-weight-bold">Rs.1200</del>
+                <span className="crd__title2">{props.cardtitle}</span>
+                <span className="font-weight-bold newprice">Rs.{props.price}</span>
+                <del className="crd__price_old">Rs.{props.oldprice}</del>
             </div>
+        </Link>
     )
 }
 
