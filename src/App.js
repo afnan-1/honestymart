@@ -1,5 +1,6 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import './App.css';
+import firebase from './firebase'
 import Header from './components/header/header.jsx'
 import Slider from './components/imageslider/ImageSlider.jsx'
 import HomeCard from './components/homeCard/HomeMixer.jsx'
@@ -29,9 +30,11 @@ import b3 from './assests/airpodspro4/a3.jpg';
 import c1 from './assests/lenovo/l1.jpg';
 import c2 from './assests/lenovo/l2.jpg';
 import c3 from './assests/lenovo/l3.jpg';
+import Admin from './components/dashboard/admin';
 
 function App() {
   const screenSize = window.innerWidth;
+  document.title="Honesty"
   const a1={
     price:'2700',
     oldprice:'3000',
@@ -96,30 +99,32 @@ function App() {
     crdimg:lcrd1,
     smallimg:[c1,c2,c3]
   }
+  const [products, setProducts] = useState([])
+  useEffect(() => {
+
+    firebase.database().ref('/').on('value', snapshot => {
+        if (snapshot.val() != null)
+            for (const key in snapshot.val()) {
+                setProducts(snapshot.val()[key])
+            }
+    })
+}, [])
   return (
     <Router>
       <div className="App">
         <Header />
         <Switch>
-          <Route path="/mall/">
+          <Route exact path='/admin'>
+          <Admin />
+          </Route>
+          <Route exact path="/mall/">
             <InsideCard />
           </Route>
-          <Route path="/clothes">
+          <Route exact path="/clothes">
             clothes
           </Route>
-          <Route path="/productsdetails/1">
-            <PDetails title={a1.title} price={a1.price} oldprice={a1.oldprice} desc={a1.desc} crdimg={a1.crdimg} smallimg={a1.smallimg} />
-          </Route>
-          <Route path="/productsdetails/2">
-            <PDetails title={a2.title} price={a2.price} oldprice={a2.oldprice} desc={a2.desc} crdimg={a2.crdimg} smallimg={a2.smallimg} />
-          </Route>
-          <Route path="/productsdetails/3">
-            <PDetails title={a3.title} price={a3.price} oldprice={a3.oldprice} desc={a3.desc} crdimg={a3.crdimg} smallimg={a3.smallimg} />
-          </Route>
-          <Route path="/productsdetails/4">
-            <PDetails title={l1.title} price={l1.price} oldprice={l1.oldprice} desc={l1.desc} crdimg={l1.crdimg} smallimg={l1.smallimg}/>
-          </Route>
-          <Route path="/shop">
+         
+          <Route exact path="/shop">
 
             Mall
           </Route>

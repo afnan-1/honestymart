@@ -26,6 +26,7 @@ object-fit: fill;
 .insidecard__flex{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     width: 100%;
 }
 .card__inside:hover{

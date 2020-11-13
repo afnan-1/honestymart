@@ -4,8 +4,6 @@ import './insidecard.css'
 import { Link } from 'react-router-dom';
 // let history = useHistory()
 function Card(props) {
-
-
     return (
         <Link to={`productsdetails/${props.id}`}>
             <div className="card__inside">

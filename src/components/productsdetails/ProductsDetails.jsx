@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import './productdetails.css'
 
 function ProductsDetails(props) {
+    document.title=props.title
     const [img, setimg] = useState(props.crdimg)
-    // let imgurl = 'https://static-01.daraz.pk/p/4ddece16ae24bd775d1700c865b67282.jpg_200x200q80.jpg_.webp'
     const handleImage = (e) => {
         setimg(e.target.src)
     }
@@ -19,9 +19,9 @@ function ProductsDetails(props) {
                     </div>
                     <div className="productdetail__smallimg">
                         <img className="smallimg" onClick={(e) => { handleImage(e) }} src={props.crdimg} alt="" />
-                        <img className="smallimg" onClick={(e) => { handleImage(e) }} src={props.smallimg[0]} alt="" />
-                        <img className="smallimg" onClick={(e) => { handleImage(e) }} src={props.smallimg[1]} alt="" />
-                        <img className="smallimg" onClick={(e) => { handleImage(e) }} src={props.smallimg[2]} alt="" />
+                        <img className="smallimg" onClick={(e) => { handleImage(e) }} src={props.img1} alt="" />
+                        <img className="smallimg" onClick={(e) => { handleImage(e) }} src={props.img2} alt="" />
+                        <img className="smallimg" onClick={(e) => { handleImage(e) }} src={props.img3} alt="" />
                     </div>
 
                 </div>
