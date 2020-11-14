@@ -6,8 +6,16 @@ import {
     Link
 } from "react-router-dom";
 import './header.css'
-
+import { useStateValue } from '../../StateProvider';
+import firebase from '../../firebase'
 function Header() {
+    const [{ user }, dispatch] = useStateValue();
+    const handleSignOut=()=>{
+        if (user) {
+        firebase.auth().signOut()
+        }
+        console.log('signout',user);
+    }
     return (
         <div className="header">
                 <Link to="/">
@@ -19,12 +27,11 @@ function Header() {
                 <SearchIcon className="header__searchIcon" />
             </div>
             <div className="header__nav">
+            <Link to={!user && '/login'}>
                 <div className="header__option">
-                    <button className="btn btn-primary">Signup</button>
+                    <button onClick={handleSignOut} className="btn btn-primary">     {user ? 'Sign Out' : 'Sign In'}</button>
                 </div>
-                <div className="header__option">
-                    <button className="btn btn-primary">Login</button>
-                </div>
+            </Link>
 
                 <div className="header__optionBasket">
                     <ShoppingBasketIcon />

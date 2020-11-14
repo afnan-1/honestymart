@@ -1,9 +1,9 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import firebase from '../../firebase'
-import { getProducts, editProduct } from '../../store/action';
+import { useStateValue } from '../../StateProvider';
 import ProductsForm from './ProductsForm';
 
 function ProductsDATA(props) {
@@ -12,6 +12,8 @@ function ProductsDATA(props) {
     const [currentId, setCurrentId] = useState('')
     const [products, setProducts] = useState([])
     const [imgEdit,setimgEdit] = useState('')
+    // const [users, setUsers] = useState(null)
+    const [{ user }, dispatch] = useStateValue();
     useEffect(() => {
 
         firebase.database().ref('/').on('value', snapshot => {
@@ -21,11 +23,10 @@ function ProductsDATA(props) {
                 }
                
         })
-       
-       
+      
     }, [])
-    const addOrEdit = (obj,file,file1,file2,file3) => {
-        let key = firebase.database().ref('/products').push().key
+    
+    const addOrEdit = (obj,file) => {     
         if (currentId == ''){
         var ref = firebase.storage().ref().child(`images/${file.name}`).put(file);
         ref.on('state_changed', function(snapshot){
@@ -47,91 +48,13 @@ function ProductsDATA(props) {
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             ref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
             //   console.log('File available at', downloadURL);
-              firebase.database().ref('/').child(`products/${key}`).push({...obj,img:downloadURL})
+              firebase.database().ref('/').child(`products`).push({...obj,img:downloadURL})
             //   setimgEdit(downloadURL)
             });
           });
-          var ref = firebase.storage().ref().child(`images/${file1.name}`).put(file1);
-          ref.on('state_changed', function(snapshot){
-              var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              // console.log('Upload is ' + progress.toFixed(0) + '% done');
-              setUploadProgress(progress)
-              switch (snapshot.state) {
-                case firebase.storage.TaskState.PAUSED: // or 'paused'
-                  console.log('Upload is paused');
-                  break;
-                case firebase.storage.TaskState.RUNNING: // or 'running'
-                  console.log('Upload is running');
-                  break;
-              }
-            }, function(error) {
-              // Handle unsuccessful uploads
-            }, function() {
-              // Handle successful uploads on complete
-              // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-              ref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-                // console.log('File available at', downloadURL);
-                firebase.database().ref('/').child(`products/${key}`).push(downloadURL)
-                // setImg1(downloadURL)
-              });
-            });
-            var ref = firebase.storage().ref().child(`images/${file2.name}`).put(file2);
-            ref.on('state_changed', function(snapshot){
-                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                // console.log('Upload is ' + progress.toFixed(0) + '% done');
-                setUploadProgress(progress)
-                switch (snapshot.state) {
-                  case firebase.storage.TaskState.PAUSED: // or 'paused'
-                    console.log('Upload is paused');
-                    break;
-                  case firebase.storage.TaskState.RUNNING: // or 'running'
-                    console.log('Upload is running');
-                    break;
-                }
-              }, function(error) {
-                // Handle unsuccessful uploads
-              }, function() {
-                // Handle successful uploads on complete
-                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-                ref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-                //   console.log('File available at', downloadURL);
-                const img2={
-                    img2:downloadURL
-                }
-                  firebase.database().ref('/').child(`products/${key}`).push(downloadURL)
-                //   setImg2(downloadURL)
-                });
-              });
-              var ref = firebase.storage().ref().child(`images/${file3.name}`).put(file3);
-              ref.on('state_changed', function(snapshot){
-                  var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                  // console.log('Upload is ' + progress.toFixed(0) + '% done');
-                  setUploadProgress(progress)
-                  switch (snapshot.state) {
-                    case firebase.storage.TaskState.PAUSED: // or 'paused'
-                      console.log('Upload is paused');
-                      break;
-                    case firebase.storage.TaskState.RUNNING: // or 'running'
-                      console.log('Upload is running');
-                      break;
-                  }
-                }, function(error) {
-                  // Handle unsuccessful uploads
-                }, function() {
-                  // Handle successful uploads on complete
-                  // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-                  ref.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-                    // console.log('File available at', downloadURL);
-                    // setImg3(downloadURL)
-                    // console.log(img1,img2);
-                    firebase.database().ref('/').child(`products/${key}`).push({img3:downloadURL})
-                    
-                  });
-                });
-        
         }
         else
-        // firebase.database().ref('/').child(`products/${currentId}`).set({...obj,img:imgEdit,img1:img1,img2:img2,img3:img3})
+        firebase.database().ref('/').child(`products`).set({...obj,img:imgEdit})
         setCurrentId('')
      
 }
@@ -186,20 +109,11 @@ return (
                 </div>
             </div>
         </div>
-
+<h2>{user?user.email:''}</h2>
     </div>
 )
 }
-const mapStateToProps = (state) => ({
-    pdata: state.pdata,
-    // jadu:state
-    // edit:state.edit
-})
 
-const mapDispatchToProps = (dispatch) => ({
-    getProducts: () => dispatch(getProducts()),
-    // editProduct: (key) => dispatch(editProduct(key))
-})
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsDATA);
+export default ProductsDATA;
 // export default ProductsDATA

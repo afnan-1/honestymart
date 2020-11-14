@@ -2,7 +2,7 @@ import { light } from '@material-ui/core/styles/createPalette'
 import { LocalHospital } from '@material-ui/icons'
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
-import { getProducts } from '../../store/action';
+
 import { useEffect } from 'react'
 import firebase from '../../firebase' 
 import ProductsDATA from './ProductsDATA';
