@@ -1,14 +1,37 @@
 export const initialState={
-    user:null
+    userAdmin:null,
+    users:null,
+    search:null,
+    products:[],
+    prod:[]
 }
 const reducer = (state,action)=>{
-    console.log('action',action);
     switch (action.type) {
             case "SET_USER":
                 return {
                     ...state,
-                    user:action.user
+                    users:action.users
                 }
+            case "SET_ADMIN":
+                return {
+                    ...state,
+                    userAdmin:action.data
+                }
+                case "SET_SEARCH":
+                    return {
+                        ...state,
+                        search:action.data
+                    }
+                case "SET_PRODUCTS":
+                    return {
+                        ...state,
+                        products:action.data
+                    }
+                case "PROD":
+                    return {
+                        ...state,
+                        prod:action.data
+                    }
         default:
             return state;
     }

@@ -1,8 +1,10 @@
 import React,{useState} from 'react'
 import firebase from '../../firebase'
+import { useStateValue } from '../../StateProvider';
 import './login.css'
 import {Link, useHistory} from 'react-router-dom';
 function Login() {
+    const [{ users,userAdmin }, dispatch] = useStateValue();
     const history = useHistory();
     const [email, setemail] = useState('')
     const [password, setpassword] = useState('')
@@ -10,7 +12,9 @@ function Login() {
         e.preventDefault()
         firebase.auth().signInWithEmailAndPassword(email,password)
         .then(auth=>{
-            history.push('/admin')
+            if(users)
+            console.log(users)
+            history.push('/')
         })
         .catch(err=>alert(err.message))
     }

@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Form } from 'react-bootstrap'
 
 
 
@@ -12,7 +11,7 @@ function ProductsForm(props) {
         oldprice: '',
         }
     const [file,setFile]=useState(null)
-    // const [file1,setFile1]=useState(null)
+    const [file1,setFile1]=useState(null)
     // const [file2,setFile2]=useState(null)
     // const [file3,setFile3]=useState(null)
     const [values, setValues] = useState(initialFieldValues)
@@ -37,7 +36,9 @@ function ProductsForm(props) {
     }
     const handleFormSubmit=(e)=>{
         e.preventDefault();
+        props.upload(file)
         props.addOrEdit(values,file)
+      
 
     }
     return (
@@ -82,9 +83,9 @@ function ProductsForm(props) {
             </div>
             <h3>Main image</h3>
             <input type="file" onChange={(e)=> setFile(e.target.files[0])}/>
-            {/* <h3>extra image 1</h3>
+            <h3>extra image 1</h3>
             <input type="file" onChange={(e)=> setFile1(e.target.files[0])}/>
-            <h3>extra image 2</h3>
+            {/* <h3>extra image 2</h3>
             <input type="file" onChange={(e)=> setFile2(e.target.files[0])}/>
             <h3>extra image 3</h3>
             <input type="file" onChange={(e)=> setFile3(e.target.files[0])}/> */}

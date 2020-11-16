@@ -4,9 +4,7 @@ import firebase from '../../firebase'
 
 import './insidecard.css';
 function InsideCard() {
-    // if(window.location.path==='/mall/electronics'){
     document.title='Honesty Mall'
-    // }
     const [products, setProducts] = useState([])
     useEffect(()=>{
 

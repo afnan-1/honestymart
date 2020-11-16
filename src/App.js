@@ -5,7 +5,6 @@ import Header from './components/header/header.jsx'
 import Slider from './components/imageslider/ImageSlider.jsx'
 import HomeCard from './components/homeCard/HomeMixer.jsx'
 import Footer from './components/footer/Footer.jsx'
-import Mall from './components/mall/Mall.jsx'
 import InsideCard from './components/InsideCard/InsideCard.jsx'
 import {
   BrowserRouter as Router,
@@ -16,10 +15,12 @@ import Footermobile from './components/footer/FooterMobile.jsx'
 import PDetails from './components/productsdetails/ProductsDetails.jsx';
 import {useStateValue} from './StateProvider'
 import Admin from './components/dashboard/admin';
+import AdminLogin from './components/dashboard/AdminLogin.jsx';
 import Login from './components/dashboard/Login';
+import Search from './components/Search/Search.jsx'
 
 function App() {
-  const [{ user }, dispatch] = useStateValue();
+  const [{ userAdmin, users }, dispatch] = useStateValue();
   const screenSize = window.innerWidth;
   document.title="Honesty"
   const [products, setProducts] = useState([])
@@ -35,15 +36,19 @@ function App() {
       if(authUser){
         if (authUser.email==='afnan@gmail.com'){
         dispatch({
-          type:'SET_USER',
-          user:authUser
+          type:'SET_ADMIN',
+          data:authUser
         })
       }
+      dispatch({
+        type:'SET_USER',
+        users:authUser
+      })
       }
       else{
         dispatch({
           type:'SET_USER',
-          user:null
+          users:null
         })
       }
     })       
@@ -54,13 +59,28 @@ function App() {
       <div className="App">
         <Header />
         <Switch>
-          {user?   <Route exact path='/admin'>
+          {userAdmin?   <Route exact path='/admin'>
           <Admin />
           </Route> :''}
-        
+          <Route path="/wp-admin">
+            <AdminLogin />
+          </Route>
+          {
+             Object.keys(products).map((v,i)=>{
+            return <Route path={`/productsdetails/${i}`}> <PDetails crdimg={products[v].img}
+                title={products[v].title}
+                price={products[v].price}
+                oldprice={products[v].oldprice}
+                id={i}
+             />
+             </Route>
+             })}
          
           <Route exact path="/mall/">
             <InsideCard />
+          </Route>
+          <Route exact path="/search">
+            <Search />
           </Route>
           <Route exact path="/clothes">
             clothes
